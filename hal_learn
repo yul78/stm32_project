@@ -1,5 +1,6 @@
 HAL_UART_ErrorCallback使用示例
 用途：查看UART错误类型
+注意：使用时在函数开头让huart指向huartX
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
     if (huart->ErrorCode & HAL_UART_ERROR_PE)
