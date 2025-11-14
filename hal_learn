@@ -1,0 +1,35 @@
+HAL_UART_ErrorCallback使用示例
+用途：查看UART错误类型
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->ErrorCode & HAL_UART_ERROR_PE)
+    {
+        // 处理奇偶校验错误
+        printf("Parity error occurred
+");
+    }
+    if (huart->ErrorCode & HAL_UART_ERROR_NE)
+    {
+        // 处理噪声错误
+        printf("Noise error detected
+");
+    }
+    if (huart->ErrorCode & HAL_UART_ERROR_FE)
+    {
+        // 处理帧错误
+        printf("Framing error occurred
+");
+    }
+    if (huart->ErrorCode & HAL_UART_ERROR_ORE)
+    {
+        // 处理溢出错误
+        printf("Overrun error occurred
+");
+    }
+    
+    // 清除所有错误标志
+    huart->Instance->ICR |= USART_ICR_PECF | USART_ICR_FECF | USART_ICR_ORECF | USART_ICR_NCF;
+    
+    // 重新初始化或恢复通信
+    //...
+}
